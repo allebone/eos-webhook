@@ -1,5 +1,6 @@
 const secret = "Rk5-vqMMVL";
-const repo = "/home/beskar/eos-prototype-users/";
+const repo1 = "/home/beskar/eos-prototype-users/";
+const repo2 = "/home/beskar/eos-auth-test/";
 
 const http = require('http');
 const crypto = require('crypto');
@@ -10,7 +11,8 @@ http.createServer(function (req, res) {
         let sig = "sha1=" + crypto.createHmac('sha1', secret).update(chunk.toString()).digest('hex');
 
         if (req.headers['x-hub-signature'] == sig) {
-            exec('cd ' + repo + ' && git pull');
+            exec('cd ' + repo1 + ' && git pull');
+            exec('cd ' + repo2 + ' && git pull');
         }
     });
 
